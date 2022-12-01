@@ -1,0 +1,30 @@
+services:
+  batch:
+    image: spring-batch-practice
+    container_name: batch
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - test-net
+
+  postgresql:
+    image: khy07181/postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - test-net
+
+volumes:
+  postgres:
+#    driver: local -- create new volume
+    external: true
+
+networks:
+  test-net:
+#    driver: bridge -- create new network
+    external: true
