@@ -1,7 +1,5 @@
 pipeline {
-    options {
-        retry(2)
-    }
+    agent none
 
     stages {
         stage('Github connection') {
