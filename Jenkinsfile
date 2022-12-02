@@ -16,7 +16,7 @@ pipeline {
         }
         stage('SimpleJob') {
             steps {
-                sh 'java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/*.jar'
+                sh 'java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/*SNAPSHOT.jar'
             }
         }
     }
