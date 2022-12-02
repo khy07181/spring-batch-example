@@ -8,18 +8,15 @@ pipeline {
             }
         }
         stage('Build') {
+            when { changeset "**/*" }
             steps {
-                sh 'docker build -t khy07181/spring-batch-practice:latest .'
+                echo 'Building..'
+                sh './gradlew clean build'
             }
         }
-        stage('Run') {
+        stage('SimpleJob') {
             steps {
-                sh 'docker run -d --name batch-practice -p 5432:5432 -e PROFILE=prod khy07181/spring-batch-practice'
-            }
-        }
-        stage('Finish') {
-            steps{
-                sh 'docker images -qf dangling=true | xargs -I{} docker rmi {}'
+                sh 'java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/*.jar'
             }
         }
     }
