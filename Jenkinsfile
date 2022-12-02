@@ -12,11 +12,6 @@ pipeline {
                 sh 'docker build -t khy07181/spring-batch-practice:latest .'
             }
         }
-        stage('SimpleJob') {
-            steps {
-                sh 'java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/*.jar'
-            }
-        }
         stage('Run') {
             steps {
                 sh 'docker run -d --name batch-practice -p 5432:5432 -e PROFILE=prod khy07181/spring-batch-practice'
