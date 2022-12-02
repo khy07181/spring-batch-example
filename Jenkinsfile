@@ -1,7 +1,4 @@
 pipeline {
-    agent {
-        label 'node01'
-    }
     options {
         retry(2)
     }
