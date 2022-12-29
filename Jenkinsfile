@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'node01'
-    }
+    agent any
 
     stages {
         stage('Github connection') {
