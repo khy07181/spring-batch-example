@@ -17,8 +17,8 @@ pipeline {
             }
         }
         stage('SimpleJob') {
-            ehco '${PROFILE}'
             steps {
+                echo 'profiles : ${PROFILE}'
                 sh 'java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/*SNAPSHOT.jar'
             }
         }
