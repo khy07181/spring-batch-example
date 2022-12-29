@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'node01'
+    }
 
     stages {
         stage('Github connection') {
@@ -15,6 +17,7 @@ pipeline {
             }
         }
         stage('SimpleJob') {
+            ehco '${PROFILE}'
             steps {
                 sh 'java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/*SNAPSHOT.jar'
             }
