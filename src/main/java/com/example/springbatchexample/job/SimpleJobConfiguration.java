@@ -27,7 +27,6 @@ public class SimpleJobConfiguration {
     private final JobParameter jobParameter;
 
     @Bean
-    @StepScope
     public JobParameter jobParameter(@Value("#{jobParameters[startDateTime]}") String startDateTime) {
         return new JobParameter(startDateTime);
     }
@@ -41,7 +40,6 @@ public class SimpleJobConfiguration {
     }
 
     @Bean
-    @JobScope
     public Step startStep() {
         LocalDateTime startDateTime = jobParameter.getStartDateTime();
         return stepBuilderFactory.get("startStep")
