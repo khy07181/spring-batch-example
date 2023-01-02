@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
@@ -40,6 +41,7 @@ public class SimpleJobConfiguration {
     }
 
     @Bean
+    @JobScope
     public Step startStep() {
         LocalDateTime startDateTime = jobParameter.getStartDateTime();
         return stepBuilderFactory.get("startStep")
