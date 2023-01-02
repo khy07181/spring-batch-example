@@ -16,7 +16,7 @@ pipeline {
         }
         stage('SimpleJob') {
             steps {
-                echo 'profiles : ' ${PROFILE}
+                echo  ${PROFILE}
                 echo 'startDateTime : ' ${startDateTime}
                 sh 'java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/*SNAPSHOT.jar'
             }
