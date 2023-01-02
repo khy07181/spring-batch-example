@@ -1,6 +1,5 @@
 package com.example.springbatchexample.job;
 
-import java.time.LocalDateTime;
 import javax.persistence.EntityManagerFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,11 +42,10 @@ public class SimpleJobConfiguration {
     @Bean
     @JobScope
     public Step startStep() {
-        LocalDateTime startDateTime = jobParameter.getStartDateTime();
         return stepBuilderFactory.get("startStep")
                 .tasklet((contribution, chunkContext) -> {
                     log.info(">>>>> Start!");
-                    log.info(startDateTime.toString());
+                    log.info(jobParameter.getStartDateTime().toString());
                     return RepeatStatus.FINISHED;
                 })
                 .build();

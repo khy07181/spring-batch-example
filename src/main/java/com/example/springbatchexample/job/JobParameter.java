@@ -10,7 +10,7 @@ public class JobParameter {
     private final LocalDateTime startDateTime;
 
     public JobParameter(String startDateTime) {
-        this.startDateTime = LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        this.startDateTime = LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
     }
 
 }
