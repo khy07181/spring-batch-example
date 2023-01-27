@@ -25,7 +25,7 @@ public class DayJobConfiguration {
 
     @Bean
     @StepScope
-    public JobParameter jobParameter(@Value("#{jobParameters[startDateTime]}") String startDateTime) {
+    public JobParameter dayJobParameter(@Value("#{jobParameters[startDateTime]}") String startDateTime) {
         return new JobParameter(startDateTime);
     }
 
