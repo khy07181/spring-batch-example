@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @RequiredArgsConstructor
 @Configuration
-public class SimpleJobConfiguration {
+public class DayJobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
@@ -30,23 +30,22 @@ public class SimpleJobConfiguration {
     }
 
     @Bean
-    Job simpleJob() {
-        return jobBuilderFactory.get("simpleJob")
-                .start(startStep())
+    Job dayJob() {
+        return jobBuilderFactory.get("dayJob")
+                .start(dayStep())
                 .incrementer(new RunIdIncrementer())
                 .build();
     }
 
     @Bean
     @JobScope
-    public Step startStep() {
-        return stepBuilderFactory.get("startStep")
+    public Step dayStep() {
+        return stepBuilderFactory.get("dayStep")
                 .tasklet((contribution, chunkContext) -> {
-                    log.info(">>>>>SimpleJob Start!");
+                    log.info(">>>>> Day Job start!");
                     log.info(jobParameter.getStartDateTime().toString());
                     return RepeatStatus.FINISHED;
                 })
                 .build();
     }
-
 }
