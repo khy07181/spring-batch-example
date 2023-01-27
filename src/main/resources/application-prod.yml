@@ -17,3 +17,5 @@ spring:
     job:
       enabled: true
       names: ${job.name:NONE}
+  main:
+    allow-bean-definition-overriding: true
