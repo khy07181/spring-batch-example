@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        ENV = ${jobName}
+        ENV = "${jobName}"
     }
 
     stages {
