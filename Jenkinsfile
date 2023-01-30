@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        ENV = ${jobName}
+    }
+
     stages {
         stage('Github connection') {
             steps {
@@ -14,9 +18,20 @@ pipeline {
                 sh './gradlew clean build'
             }
         }
-        stage('SimpleJob') {
+        stage('simpleJob') {
+            when {
+                environment name:"ENV", value:"simpleJob"
+            }
             steps {
                 sh 'java -jar -Dspring.profiles.active=${PROFILES} ./build/libs/*SNAPSHOT.jar --job.name=simpleJob startDateTime=${startDateTime}'
+            }
+        }
+        stage('dayJob') {
+            when {
+                environment name:"ENV", value:"dayJob"
+            }
+            steps {
+                sh 'java -jar -Dspring.profiles.active=${PROFILES} ./build/libs/*SNAPSHOT.jar --job.name=dayJob startDateTime=${startDateTime}'
             }
         }
     }
