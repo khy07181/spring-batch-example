@@ -1,5 +1,6 @@
 package com.example.springbatchexample.job;
 
+import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -44,6 +45,7 @@ public class SimpleJobConfiguration {
                 .tasklet((contribution, chunkContext) -> {
                     log.info(">>>>>SimpleJob Start!");
                     log.info(jobParameter.getStartDateTime().toString());
+                    TimeUnit.MINUTES.sleep(30);
                     return RepeatStatus.FINISHED;
                 })
                 .build();
